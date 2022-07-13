@@ -2,6 +2,7 @@ package src.main.models;
 
 import java.util.Objects;
 
+
 public class Movie {
     private String name;
     private String format;
@@ -9,6 +10,10 @@ public class Movie {
     private double sellingPrice;
     private double rentalPrice;
     private boolean isAvailable;
+
+
+    private static final String FORMAT_DVD = "DVD";
+    private static final String FORMAT_BLUERAY = "Blue-Ray";
 
     public Movie(String name, String format, double rating) {
         if (name == null || name.isBlank()) {
@@ -69,12 +74,12 @@ public class Movie {
     }
 
     public void setFormat(String format) {
-        if (!(format.equals("DVD") || format.equals("Blue-Ray"))) {
-            throw new IllegalArgumentException("format must be DVD or Blue-Ray");
+        if (!(format.equals(Movie.FORMAT_DVD) || format.equals(Movie.FORMAT_BLUERAY))) {
+            throw new IllegalArgumentException("format must be "+Movie.FORMAT_DVD+" or " + Movie.FORMAT_BLUERAY);
         }
         this.format = format;
-        setSellingPrice(format.equals("Blue-Ray") ? 4.25 : 2.25);
-        setRentalPrice(format.equals("Blue-Ray") ? 1.99 : 0.99);
+        setSellingPrice(format.equals(Movie.FORMAT_BLUERAY) ? 4.25 : 2.25);
+        setRentalPrice(format.equals(Movie.FORMAT_BLUERAY) ? 1.99 : 0.99);
     }
 
     public void setRating(double rating) {
